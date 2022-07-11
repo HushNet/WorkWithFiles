@@ -32,26 +32,19 @@ public class BinaryLoader
         DirectoryInfo studentFileInfo = new DirectoryInfo(@"C:\Users\Alexey\Desktop\Students");
         studentFileInfo.Create();
 
-        List<string> groups = new List<string>();
-
         for (int i = 0; i < students.Length; i++)
         {
-
-                using (StreamWriter sw = new StreamWriter(File.Open(@"C:\Users\Alexey\Desktop\Students\" + students[i].Group + ".txt",FileMode.Append)))
-                {
-                    sw.Write(students[i].Name);
-                    sw.Write(" ");
-                    sw.Write(students[i].Group);
-                    sw.Write(" ");
-                    sw.Write(students[i].DateOfBirth);
-                    sw.WriteLine();
-                }
-
-        }
-
-        for (int i = 0; i < students.Length; i++)
-        {
-            
+            using (StreamWriter sw =
+                   new StreamWriter(File.Open(@"C:\Users\Alexey\Desktop\Students\" + students[i].Group + ".txt",
+                       FileMode.Append)))
+            {
+                sw.Write(students[i].Name);
+                sw.Write(" ");
+                sw.Write(students[i].Group);
+                sw.Write(" ");
+                sw.Write(students[i].DateOfBirth);
+                sw.WriteLine();
+            }
         }
     }
 }
