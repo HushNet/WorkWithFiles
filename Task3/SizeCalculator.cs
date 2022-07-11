@@ -8,6 +8,7 @@ public class SizeCalculator
         var directoryInfo = new DirectoryInfo(path);
         var catalogs = directoryInfo.GetDirectories();
         var files = directoryInfo.GetFiles();
+        
 
         foreach (var file in files)
         {
@@ -16,7 +17,7 @@ public class SizeCalculator
                 totalSize += file.Length;
             }
         }
-        
+
         foreach (var cat in catalogs)
         {
             if (cat.Exists)
@@ -24,10 +25,10 @@ public class SizeCalculator
                 totalSize += CalculateSizeOfFolder(cat.FullName);
             }
         }
-        
+
         return totalSize;
     }
-    
+
     public void CleanFilesNotUsed(string path)
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(path);
@@ -50,12 +51,10 @@ public class SizeCalculator
                         Console.WriteLine(e);
                         throw;
                     }
-                    
                 }
             }
-            
         }
-        
+
         foreach (var cat in catalogs)
         {
             if (cat.Exists)
@@ -73,11 +72,8 @@ public class SizeCalculator
                         Console.WriteLine(e);
                         throw;
                     }
-                        
                 }
             }
-                
         }
-
     }
 }

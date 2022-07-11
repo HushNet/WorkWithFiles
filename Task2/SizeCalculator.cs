@@ -17,7 +17,7 @@ public class SizeCalculator
                 totalSize += file.Length;
             }
         }
-        
+
         foreach (var cat in catalogs)
         {
             if (cat.Exists)

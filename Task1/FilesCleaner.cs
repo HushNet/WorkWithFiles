@@ -4,7 +4,6 @@ public class FilesCleaner
 {
     public void CleanFilesNotUsed(DirectoryInfo directoryInfo)
     {
-
         var catalogs = directoryInfo.GetDirectories();
         var files = directoryInfo.GetFiles();
 
@@ -24,34 +23,29 @@ public class FilesCleaner
                         Console.WriteLine(e);
                         throw;
                     }
-                    
                 }
             }
-            
         }
-        
-            foreach (var cat in catalogs)
+
+        foreach (var cat in catalogs)
+        {
+            if (cat.Exists)
             {
-                if (cat.Exists)
+                CleanFilesNotUsed(cat);
+                if (Math.Abs(cat.LastWriteTime.Subtract(DateTime.Now).TotalMinutes) > 30 && cat.GetFiles().Length == 0)
                 {
-                    CleanFilesNotUsed(cat);
-                    if (Math.Abs(cat.LastWriteTime.Subtract(DateTime.Now).TotalMinutes) > 30 && cat.GetFiles().Length == 0)
+                    try
                     {
-                        try
-                        {
-                            cat.Delete();
-                            Console.WriteLine($"Каталог {cat.Name} удален");
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e);
-                            throw;
-                        }
-                        
+                        cat.Delete();
+                        Console.WriteLine($"Каталог {cat.Name} удален");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
                     }
                 }
-                
             }
-
+        }
     }
 }
